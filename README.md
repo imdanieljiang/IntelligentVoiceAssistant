@@ -1,6 +1,6 @@
 # IntelligentVoiceAssistant
 
-## A simple project of an intelligent voice assistant (like Google Assitant or Amazon's Alexa)
+## A simple project of an intelligent voice assistant (like Google Assistant or Amazon Alexa)
 
 ### Please install the required dependencies in the requirements.txt file
 
