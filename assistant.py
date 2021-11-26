@@ -17,12 +17,17 @@ speaker.setProperty('rate', 250)
 to_do_list = ['Go shopping', 'Clean room', 'Do homework', 'Buy groceries']
 
 
+# Makes the assistant say something and wait for a response
+def speech(text):
+    speaker.say(text)
+    speaker.runAndWait()
+
+
 # Functions to create a note
 def create_note():
     global recognizer
 
-    speaker.say('What do you want to write onto your note?')
-    speaker.runAndWait()
+    speech('What do you want to write onto your note?')
 
     done = False
 
@@ -38,8 +43,7 @@ def create_note():
                 note = note.lower()
 
                 # Creates a file name for the output note
-                speaker.say('Choose a file name')
-                speaker.runAndWait()
+                speech('Choose a file name')
 
                 # Listens for the file name for the output note
                 recognizer.adjust_for_ambient_noise(mic, duration = 0.2)
@@ -53,21 +57,18 @@ def create_note():
             with open(f'{filename}.txt', 'w') as file:
                 file.write(note)
                 done = True
-                speaker.say(f'I successfully created the note {filename}')
-                speaker.runAndWait()
+                speech(f'I successfully created the note {filename}')
 
         except speech_recognition.UnknownValueError:
             recognizer = speech_recognition.Recognizer()
-            speaker.say('I did not get that. Please try again!')
-            speaker.runAndWait()
+            speech('I did not get that. Please try again!')
 
 
 # Adds a to do to the to do list
 def add_to_do():
     global recognizer
 
-    speaker.say('What to do do you want to add?')
-    speaker.runAndWait()
+    speech('What to do do you want to add?')
 
     done = False
 
@@ -86,13 +87,11 @@ def add_to_do():
                 to_do_list.append(item)
                 done = True
 
-                speaker.say(f'I added {item} to the to do list!')
-                speaker.runAndWait()
+                speech(f'I added {item} to the to do list!')
 
         except speech_recognition.UnknownValueError:
             recognizer = speech_recognition.Recognizer()
-            speaker.say('I did not get that. Please try again!')
-            speaker.runAndWait()
+            speech('I did not get that. Please try again!')
 
 
 # Shows the to do list
@@ -105,14 +104,12 @@ def show_to_dos():
 
 # Greets the user
 def hello():
-    speaker.say('Hello. What can I do for you?')
-    speaker.runAndWait()
+    speech('Hello. What can I do for you?')
 
 
 # Quits from the assistant
 def quit():
-    speaker.say('Bye, see you next time')
-    speaker.runAndWait()
+    speech('Bye, see you next time')
     sys.exit(0)
 
 
